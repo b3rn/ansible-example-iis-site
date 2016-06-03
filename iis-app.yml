@@ -1,0 +1,26 @@
+---
+- name: Configure webserver nodes
+  hosts: all
+  roles:
+    - windows-base
+  tasks:
+    - name: Ensure the Web-Server server roles is installed
+      win_feature:
+        name: Web-Server
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+        state: present
+
+    - name: Deploy site to 'C:\inetpub\wwwroot\ansible.html'
+      win_get_url:
+        url: https://raw.githubusercontent.com/wtcross/mywebapp/master/index.html
+        dest: C:\inetpub\wwwroot\ansible.html
+
+    - name: Ensure the IIS site is started
+      win_iis_website:
+        name: Default Web Site
+        port: 80
+        application_pool: DefaultAppPool
+        physical_path: c:\inetpub\wwwroot
+        state: started

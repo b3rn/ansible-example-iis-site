@@ -22,5 +22,5 @@
         name: Default Web Site
         port: 80
         application_pool: DefaultAppPool
-        physical_path: c:\inetpub\wwwroot\ansible.html
+        physical_path: C:\inetpub\wwwroot\ansible.html
         state: started

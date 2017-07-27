@@ -1,4 +1,0 @@
----
-- src: https://github.com/wtcross/ansible-example-role-windows-base.git
-  name: windows-base
-  version: master
